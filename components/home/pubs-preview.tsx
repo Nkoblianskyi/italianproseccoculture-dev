@@ -17,6 +17,27 @@ const lowAlcohol = [
   { name: 'Vino della Casa', abv: '11% vol.', desc: 'Il classico vino sfuso locale servito al bicchiere. Ogni regione propone la propria varieta tipica.' },
 ]
 
+const pubKinds = [
+  {
+    name: 'Osteria tradizionale',
+    desc: 'Tavoli di legno, vino della casa e cucina di territorio: spesso qui trovi anche birra locale o bottiglie artigianali scelte dal gestore. E il posto dove la convivialita italiana incontra la birra senza snaturare l\'identita del locale.',
+    image: '/images/pubs-beer.jpg',
+    alt: 'Interno osteria italiana con birre',
+  },
+  {
+    name: 'Birreria artigianale',
+    desc: 'Produttori e appassionati propongono birre proprie o selezioni curate, spesso con degustazioni e abbinamenti al cibo. Il nord e particolarmente vivace, ma microbirrifici e tap room crescono in tutta la penisola.',
+    image: '/images/pub-exterior.jpg',
+    alt: 'Esterno birreria artigianale italiana',
+  },
+  {
+    name: 'Irish pub all\'italiana',
+    desc: 'Legno scuro, birre alla spina internazionali e italiane, musica dal vivo: un modello anglosassone filtrato dal gusto locale. Molti locali alternano serate sportive, concerti acustici e aperitivi all\'italiana.',
+    image: '/images/pubs-beer.jpg',
+    alt: 'Pub in stile irlandese in Italia',
+  },
+]
+
 export default function PubsPreview() {
   return (
     <section className="bg-[var(--cream)] py-24 md:py-32">
@@ -29,17 +50,51 @@ export default function PubsPreview() {
           <h2 className="font-serif text-4xl md:text-5xl font-light italic text-[var(--green-deep)] leading-tight text-pretty">
             Pub, Birra e Bevande Italiane
           </h2>
-          <p className="font-sans text-sm leading-relaxed text-muted-foreground max-w-2xl mx-auto mt-6">
+          <p className="font-sans text-sm leading-relaxed text-muted-foreground max-w-3xl mx-auto mt-6">
             Accanto alla grande tradizione del vino, l&apos;Italia vanta una vivace cultura birraria e dell&apos;aperitivo.
             Dai pub storici nelle piazze alle moderne birrerie artigianali, ogni bicchiere racconta un territorio.
+            La birra alla spina e in crescita: temperature di servizio, bicchieri e stili — da lager dissetante a IPA luppolate —
+            vengono spiegati sempre piu spesso nei menu e dagli staff, avvicinando il pubblico al mondo del malto e del luppolo.
           </p>
+          <p className="font-sans text-sm leading-relaxed text-muted-foreground max-w-3xl mx-auto mt-4">
+            I pub e le osterie restano luoghi di incontro: dopo lavoro, partite in tv, concerti o semplicemente una pizza con
+            amici. Ogni regione interpreta il locale a modo suo, mescolando tradizione gastronomica italiana e influenze
+            europee senza rinunciare al cibo di qualita servito al tavolo o al bancone.
+          </p>
+        </div>
+
+        {/* Pub types */}
+        <div className="mb-20">
+          <h3 className="font-serif text-xl font-medium italic text-[var(--green-deep)] mb-6 border-l-2 border-[var(--gold)] pl-4">
+            Dove bere birra in Italia
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {pubKinds.map((pub) => (
+              <article
+                key={pub.name}
+                className="bg-background border border-border overflow-hidden shadow-sm flex flex-col"
+              >
+                <div className="relative aspect-[16/10]">
+                  <Image src={pub.image} alt={pub.alt} fill className="object-cover" />
+                </div>
+                <div className="p-5 flex flex-col flex-1">
+                  <h4 className="font-serif text-lg font-medium text-[var(--green-deep)] mb-2">{pub.name}</h4>
+                  <p className="font-sans text-xs text-muted-foreground leading-relaxed flex-1">{pub.desc}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
 
         {/* Birre grid */}
         <div className="mb-6">
-          <h3 className="font-serif text-xl font-medium italic text-[var(--green-deep)] mb-6 border-l-2 border-[var(--gold)] pl-4">
+          <h3 className="font-serif text-xl font-medium italic text-[var(--green-deep)] mb-3 border-l-2 border-[var(--gold)] pl-4">
             Birre — dalla chiara alla scura
           </h3>
+          <p className="font-sans text-xs text-muted-foreground leading-relaxed max-w-3xl mb-6 pl-4 md:pl-6 border-l border-border ml-1">
+            Sotto trovi uno sguardo rapido agli stili piu incontrati al bancone. Nella pagina dedicata approfondiamo colore,
+            aroma, temperatura di servizio, bicchiere consigliato e abbinamenti con la cucina italiana.
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border border-border">
             {beers.map((beer, i) => (
               <div
