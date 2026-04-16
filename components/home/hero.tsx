@@ -34,7 +34,7 @@ export default function Hero() {
             Questo sito contiene contenuti informativi sull&apos;alcol.
             Accedendo dichiari di avere <strong className="text-white">almeno 18 anni</strong>.
             Nessun prodotto viene venduto o acquistato qui.
-            Consuma alcol in modo responsabile. Alcol max. <strong className="text-white">12% vol.</strong>
+            Consuma alcol in modo responsabile.
           </p>
         </div>
       </div>
