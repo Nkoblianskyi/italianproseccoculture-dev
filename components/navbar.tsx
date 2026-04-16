@@ -33,7 +33,7 @@ export default function Navbar() {
           <Image src="/favicon.ico" alt="Logo" width={32} height={32} />
           <div className="w-px h-8 bg-[var(--gold)]/60" />
           <div className="flex flex-col leading-none">
-            <span className="font-serif text-[0.6rem] tracking-[0.35em] uppercase text-[var(--gold)]/70 font-normal">
+            <span className="font-serif text-[0.6rem] tracking-[0.35em] uppercase text-yellow-400 font-normal">
               Italian
             </span>
             <span className="font-serif text-lg md:text-xl font-semibold tracking-tight text-white italic mt-0.5">
