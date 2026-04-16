@@ -2,66 +2,119 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 const beers = [
-  { name: 'Birra Chiara', abv: '4.5% vol.', desc: 'Leggera, dorata, dal gusto fresco e dissetante. La piu diffusa nei pub italiani.' },
-  { name: 'Birra Rossa', abv: '5.5% vol.', desc: 'Ambrata con note caramellate, maltate e un finale morbido. Tipica del nord Italia.' },
-  { name: 'Birra Artigianale', abv: '6.5% vol.', desc: 'Le microbirrerie italiane producono IPA, stout e birre di frumento di alta qualita.' },
+  { name: 'Birra Chiara', abv: '4.5% vol.', desc: 'Leggera, dorata, dal gusto fresco e dissetante. La tipologia piu diffusa nei pub italiani.' },
+  { name: 'Birra Ambrata', abv: '5.5% vol.', desc: 'Note caramellate e maltate con un finale morbido e avvolgente. Tipica del nord Italia.' },
+  { name: 'Birra di Frumento', abv: '5.0% vol.', desc: 'Torbida, cremosa, con sentori di agrumi e spezie. La weizen italiana in versione artigianale.' },
+  { name: 'IPA Italiana', abv: '6.2% vol.', desc: 'Luppolata e aromatica, con sentori di frutta tropicale. Prodotta dalle microbirrerie del nord.' },
+  { name: 'Birra Scura', abv: '5.8% vol.', desc: 'Stout artigianale con note di torrefazione, cioccolato e caffe. Corpo pieno e vellutato.' },
+  { name: 'Birra di Abbazia', abv: '6.5% vol.', desc: 'Ispirata alla tradizione monastica belga, prodotta in Italia con malti speciali e lieviti aromatici.' },
+]
+
+const lowAlcohol = [
+  { name: 'Spritz Veneto', abv: '8% vol.', desc: 'Il cocktail simbolo dell\'aperitivo italiano. Vino bianco frizzante, bitter e acqua frizzante su ghiaccio.' },
+  { name: 'Sidro di Mele', abv: '4.5% vol.', desc: 'Sidro fermentato di mele italiane, fresco e leggermente dolce. In crescita nei pub del nord Italia.' },
+  { name: 'Radler', abv: '2.5% vol.', desc: 'Birra miscelata con succo di limone o arancia. Fresca, dissetante, ideale per l\'estate italiana.' },
+  { name: 'Vino della Casa', abv: '11% vol.', desc: 'Il classico vino sfuso locale servito al bicchiere. Ogni regione propone la propria varieta tipica.' },
 ]
 
 export default function PubsPreview() {
   return (
-    <section className="bg-background py-24 md:py-32">
+    <section className="bg-[var(--cream)] py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Image */}
-          <div className="relative aspect-[4/3] rounded overflow-hidden shadow-xl">
-            <Image
-              src="/images/pubs-beer.jpg"
-              alt="Pub italiano con birre artigianali"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-[var(--charcoal)]/30" />
+
+        {/* Header */}
+        <div className="text-center mb-16">
+          <p className="section-label mb-4">Cultura birraria italiana</p>
+          <div className="divider-gold mx-auto" style={{ margin: '0 auto 1.5rem' }} />
+          <h2 className="font-serif text-4xl md:text-5xl font-light italic text-[var(--green-deep)] leading-tight text-pretty">
+            Pub, Birra e Bevande Italiane
+          </h2>
+          <p className="font-sans text-sm leading-relaxed text-muted-foreground max-w-2xl mx-auto mt-6">
+            Accanto alla grande tradizione del vino, l&apos;Italia vanta una vivace cultura birraria e dell&apos;aperitivo.
+            Dai pub storici nelle piazze alle moderne birrerie artigianali, ogni bicchiere racconta un territorio.
+          </p>
+        </div>
+
+        {/* Birre grid */}
+        <div className="mb-6">
+          <h3 className="font-serif text-xl font-medium italic text-[var(--green-deep)] mb-6 border-l-2 border-[var(--gold)] pl-4">
+            Birre — dalla chiara alla scura
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border border-border">
+            {beers.map((beer, i) => (
+              <div
+                key={beer.name}
+                className="p-6 border-border flex flex-col gap-2"
+                style={{ borderRight: (i + 1) % 3 !== 0 ? '1px solid var(--border)' : undefined, borderBottom: i < 3 ? '1px solid var(--border)' : undefined }}
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <h4 className="font-serif text-base font-medium text-[var(--green-deep)]">{beer.name}</h4>
+                  <span className="font-sans text-[9px] tracking-widest uppercase bg-[var(--gold)]/20 text-[var(--green-deep)] px-2 py-0.5 shrink-0">
+                    {beer.abv}
+                  </span>
+                </div>
+                <p className="font-sans text-xs text-muted-foreground leading-relaxed">{beer.desc}</p>
+              </div>
+            ))}
           </div>
+        </div>
 
-          {/* Text */}
+        {/* Low alcohol + image row */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mt-14">
+
           <div>
-            <p className="section-label mb-4">Cultura birraria italiana</p>
-            <div className="divider-gold" style={{ margin: '0 0 1.5rem 0' }} />
-            <h2 className="font-serif text-4xl md:text-5xl font-light italic text-[var(--green-deep)] leading-tight mb-6 text-pretty">
-              Pub e Birra in Italia
-            </h2>
-            <p className="font-sans text-sm leading-relaxed text-muted-foreground mb-8">
-              Accanto alla tradizione del vino, l&apos;Italia vanta una crescente cultura birraria.
-              Dai pub tradizionali nelle piazze storiche alle moderne birrerie artigianali, la birra
-              italiana conquista sempre piu appassionati. Scopri i luoghi e le tipologie piu amate.
-            </p>
-
-            {/* Beer list */}
-            <div className="space-y-4 mb-8">
-              {beers.map((beer) => (
-                <div key={beer.name} className="flex gap-4 items-start border-b border-border pb-4">
-                  <div className="shrink-0 w-2 h-2 rounded-full bg-[var(--gold)] mt-1.5" />
+            <h3 className="font-serif text-xl font-medium italic text-[var(--green-deep)] mb-6 border-l-2 border-[var(--gold)] pl-4">
+              Bevande a bassa gradazione
+            </h3>
+            <div className="divide-y divide-border border border-border">
+              {lowAlcohol.map((drink) => (
+                <div key={drink.name} className="flex gap-4 items-start p-5">
+                  <div className="shrink-0 w-1.5 h-1.5 rounded-full bg-[var(--gold)] mt-1.5" />
                   <div>
                     <div className="flex items-center gap-3 mb-1">
-                      <h3 className="font-serif text-base font-medium text-[var(--green-deep)]">{beer.name}</h3>
+                      <h4 className="font-serif text-sm font-medium text-[var(--green-deep)]">{drink.name}</h4>
                       <span className="font-sans text-[9px] tracking-widest uppercase bg-[var(--gold)]/20 text-[var(--green-deep)] px-2 py-0.5">
-                        {beer.abv}
+                        {drink.abv}
                       </span>
                     </div>
-                    <p className="font-sans text-xs text-muted-foreground leading-relaxed">{beer.desc}</p>
+                    <p className="font-sans text-xs text-muted-foreground leading-relaxed">{drink.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
+          </div>
 
-            <Link
-              href="/pub"
-              className="inline-block font-sans text-xs tracking-[0.2em] uppercase px-7 py-3 bg-[var(--green-deep)] text-[var(--gold)] hover:bg-[var(--green-mid)] transition-colors duration-300"
-            >
-              Scopri pub e birre
-            </Link>
+          {/* Images stacked */}
+          <div className="flex flex-col gap-4">
+            <div className="relative aspect-[16/9] overflow-hidden">
+              <Image
+                src="/images/pubs-beer.jpg"
+                alt="Pub italiano con birre artigianali"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="relative aspect-[16/9] overflow-hidden">
+              <Image
+                src="/images/spritz.jpg"
+                alt="Spritz Veneto aperitivo italiano"
+                fill
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
+
+        {/* CTA */}
+        <div className="text-center mt-14">
+          <Link
+            href="/pub"
+            className="inline-block font-sans text-xs tracking-[0.2em] uppercase px-10 py-4 bg-[var(--green-deep)] text-[var(--gold)] hover:bg-[var(--green-mid)] transition-colors duration-300"
+          >
+            Scopri tutti i pub e le birre
+          </Link>
+        </div>
+
       </div>
     </section>
   )
